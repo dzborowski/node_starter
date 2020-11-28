@@ -1,0 +1,23 @@
+version: '3'
+services:
+  api:
+    restart: always
+    build: .
+    env_file:
+      - .env
+    ports:
+      - '${API_OUTER_PORT}:${API_INNER_PORT}'
+    depends_on:
+      - postgres
+  postgres:
+    image: 'postgres:13.0-alpine'
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - shop_api_db:/var/lib/postgresql/data
+    ports:
+      - '${POSTGRES_OUTER_PORT}:${POSTGRES_INNER_PORT}'
+
+volumes:
+  shop_api_db:
