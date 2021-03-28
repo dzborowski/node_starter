@@ -1,6 +1,6 @@
-FROM node:14.15.0-alpine3.10
+FROM node:14.16.0-alpine3.10
 
-WORKDIR /usr/shop_api
+WORKDIR /usr/node_starter
 
 COPY ["package.json", "."]
 COPY ["package-lock.json", "."]
@@ -8,5 +8,7 @@ COPY ["package-lock.json", "."]
 RUN ["npm", "ci"]
 
 COPY . .
+
+RUN ["npm", "run", "prod:build"]
 
 CMD ["npm", "run", "prod:start"]

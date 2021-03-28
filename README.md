@@ -13,14 +13,20 @@ npm run dev:build
 npm run dev:start
 ```
 
-##### Run migrations:
-
-```
-npx typeorm migration:run
-```
-
 ##### Generate migration:
 
 ```
-npx typeorm migration:generate -n UserEntity -d src/user/migration
+npx typeorm migration:generate -n init_migration -d src/migrations --config build/OrmConfig.js
+```
+
+##### Run migrations:
+
+```
+npx typeorm migration:run --config build/OrmConfig.js
+```
+
+##### Revert last migration:
+
+```
+npx typeorm migration:revert --config build/OrmConfig.js
 ```
